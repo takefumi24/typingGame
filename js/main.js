@@ -24,6 +24,15 @@
   function updateTimer() {
     const timeLeft = startTime + timeLimit - Date.now();
     timerLabel.textContent = (timeLeft / 1000).toFixed(2);
+
+    const timeoutId = setTimeout(() => {
+      updateTimer();
+    }, 10);
+
+    if (timeLeft < 0) {
+      clearTimeout(timeoutId);
+      alert("Game Over");
+    }
   }
 
   window.addEventListener("click", () => {
