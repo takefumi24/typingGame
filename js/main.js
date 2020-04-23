@@ -1,12 +1,51 @@
 'use strict';
 
 {
-  const words = ["apple", "sky", "blue", "middle", "set"];
-  let word = words[Math.floor(Math.random() * words.length)];
-  let loc = 0;
-  let score = 0;
-  let miss = 0;
-  const timeLimit = 3 * 1000;
+  const words = [
+    "chocolate",
+    "candy",
+    "cookie",
+    "ice cream",
+    "apple pie",
+    "affogato",
+    "eclair",
+    "canele",
+    "caramel",
+    "gummy",
+    "crepe",
+    "sachertorte",
+    "compote",
+    "gelato",
+    "sherbet",
+    "cake",
+    "scone",
+    "jelly",
+    "tart",
+    "tiramisu",
+    "churros",
+    "doughnut",
+    "truffle",
+    "bavarois",
+    "parfait",
+    "biscuit",
+    "financier",
+    "brownie",
+    "pudding",
+    "pretzel",
+    "florentin",
+    "popcorn",
+    "bonbon",
+    "marshmallow",
+    "macaron",
+    "madeleine",
+    "muffin",
+    "waffle",
+  ];
+  let word;
+  let loc;
+  let score;
+  let miss;
+  const timeLimit = 30 * 1000;
   let startTime;
   let isPlaying = false;
 
@@ -38,13 +77,15 @@
       setTimeout(() => {
         showResult();
       }, 100);
+
+      target.textContent = "click to replay";
     }
   }
 
   function showResult() {
     const accuracy = score + miss === 0 ? 0 : (score / (score + miss)) * 100;
     alert(
-      `${score} letters, ${miss} misses, ${accuracy.toFixed(2)}% accuracy!`
+      `正打数：${score}, ミスタイプ：${miss}, 正確度：${accuracy.toFixed(2)}%`
     );
   }
 
@@ -53,6 +94,13 @@
       return;
     }
     isPlaying = true;
+    loc = 0;
+    score = 0;
+    miss = 0;
+    scoreLabel.textContent = score;
+    missLabel.textContent = miss;
+    word = words[Math.floor(Math.random() * words.length)];
+
     target.textContent = word;
 
     startTime = Date.now();
